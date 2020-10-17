@@ -7,3 +7,7 @@ for key,value in goals.items():
     db_session.add(g)
 db_session.commit()
 
+for key,value in goals.items():
+    g = Goals(goal = key, goal_name = value)
+    db_session.add(g)
+db_session.commit()
