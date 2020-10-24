@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block body %}
+  {% include 'nav.html' %}
+  <main class="container mt-3">
+    <div class="card my-4 mx-auto">
+      <div class="card-body m-2 m-md-4">
+        <article class="row">
+          <div class="col-5"><img src="{{ db_teacher.picture }}" class="img-fluid" alt=""></div>
+          <div class="col-7">
+            <section class="teacher=info">
+              <h1 class="h2">{{ db_teacher.name }}</h1>
+              <p><span class="badge badge-secondary mr-2">{%  for i in gl %}{{ i.goal_name }} {% endfor %} </span>Рейтинг: {{ db_teacher.rating }} Ставка: {{ db_teacher.price }} / час</p>
+              <p>{{ db_teacher.about }}</p>
+            </section>
+            <section class="available">
+              <h4 class="mb-4 mt-5">Записаться на пробный урок</h4>
+              {% for sd in scheduler_dows|groupby("dow_order") %}
+                {% set dn = sd[1] %}
+                <h6 class="mt-4">{{ dn[0].dow_name }}</h6>
+                {% for f in sd[1]%}
+                  {% set stime = f.time%}
+                  <a href={% if not f.occupied %}"/booking/{{ db_teacher.id }}/{{ f.dow_id }}/{{ stime.strftime('%H') }}"{% else %} # {% endif %}class="btn {% if not f.occupied %} btn-outline-success {% else %} btn-success {% endif %}mr-2 mt-2">{% if not f.occupied %} {{ stime.strftime('%H:%M') }} свободно {% else %} {{ stime.strftime('%H:%M') }} занято {% endif %}</a>
+                {% endfor %}
+              {% endfor %}
+            </section>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+{% endblock %}
