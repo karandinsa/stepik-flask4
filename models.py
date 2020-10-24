@@ -64,10 +64,10 @@ class Teachers(Base):
     row_id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     id = Column(Integer, nullable=False)
     name = Column(String(100), nullable=False)
-    about= Column(Text, nullable=False)
-    rating= Column(Numeric(4,1), nullable=False)
-    picture= Column(String(120), nullable=False)
-    price= Column(Numeric(6,2), nullable=False)
+    about = Column(Text, nullable=False)
+    rating = Column(Numeric(4, 1), nullable=False)
+    picture = Column(String(120), nullable=False)
+    price = Column(Numeric(6, 2), nullable=False)
 
     def __init__(self, **kwargs):
         for key, value in kwargs.items():
@@ -75,6 +75,7 @@ class Teachers(Base):
 
     def __repr__(self):
         return '<{} {!r}>'.format(type(self).__name__, self.row_id)
+
 
 class ViewSchedulerDows(Base):
     __tablename__ = "view_scheduler_dows"
@@ -94,6 +95,7 @@ class ViewSchedulerDows(Base):
     def __repr__(self):
         return '<{} {!r}>'.format(type(self).__name__, self.row_id)
 
+
 class ViewTeacherGoals(Base):
     __tablename__ = "view_teacher_goals"
     row_id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
@@ -107,6 +109,7 @@ class ViewTeacherGoals(Base):
 
     def __repr__(self):
         return '<{} {!r}>'.format(type(self).__name__, self.row_id)
+
 
 class TeacherRequests(Base):
     __tablename__ = "view_teacher_requests"
